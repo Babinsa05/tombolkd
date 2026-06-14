@@ -6,11 +6,11 @@
 <meta name="theme-color" content="#000000" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Udayana Portal" />
+<meta name="apple-mobile-web-app-title" content="PORTAL KORAMIL SUKASADA" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="msapplication-TileColor" content="#000000" />
 <meta name="msapplication-tap-highlight" content="no" />
-<title>Udayana Portal</title>
+<title>PORTAL KORAMIL SUKASADA</title>
 
 <!-- PWA Icons -->
 <link rel="apple-touch-icon" sizes="180x180" href="https://babinsa05.github.io/tombol2/apple-touch-icon.png">
@@ -111,20 +111,20 @@
   }
 
   /* ===== HEADER ===== */
-  .udayana-header {
+  .sukasada-header {
     text-align: center;
     padding: 20px 0;
     margin-bottom: 30px;
   }
 
-  .udayana-logo {
+  .sukasada-logo {
     width: 100px;
     height: 100px;
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
     margin-bottom: 15px;
   }
 
-  .udayana-title {
+  .sukasada-title {
     color: #ffd700;
     font-size: 24px;
     font-weight: bold;
@@ -296,8 +296,8 @@
 <!-- ===== APP SHELL (Critical First Paint) ===== -->
 <div class="app-shell" id="appShell">
   <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
-       alt="Udayana" class="app-logo">
-  <div class="app-title">UDAYANA PORTAL</div>
+       alt="sukasada" class="app-logo">
+  <div class="app-title">KORAMIL SUKASADA PORTAL</div>
   <div class="app-loading">
     <div class="app-progress" id="appProgress"></div>
   </div>
@@ -315,10 +315,10 @@
 <!-- ===== MAIN CONTENT ===== -->
 <div class="main-content" id="mainContent">
   <!-- Header -->
-  <header class="udayana-header">
+  <header class="sukasada-header">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
-         alt="Udayana" class="udayana-logo">
-    <h1 class="udayana-title">UDAYANA PORTAL</h1>
+         alt="sukasada" class="sukasada-logo">
+    <h1 class="sukasada-title">KORAMIL SUKASADA PORTAL</h1>
   </header>
 
   <!-- Buttons Grid -->
@@ -372,7 +372,7 @@
 
 <!-- ===== MAIN SCRIPT ===== -->
 <script>
-// ===== UDAYANA PORTAL - GITHUB PAGES OPTIMIZED =====
+// ===== KORAMIL PORTAL - GITHUB PAGES OPTIMIZED =====
 // PWA + APK Installation
 
 // Global Error Handler
@@ -510,7 +510,7 @@ function setupButtons() {
 // ===== APK INSTALLATION =====
 document.getElementById('apkButton').addEventListener('click', () => {
   // Ganti dengan URL APK yang valid
-  const apkUrl = 'https://example.com/udayana-portal.apk'; // Ganti dengan URL APK Anda
+  const apkUrl = 'https://example.com/sukasada-portal.apk'; // Ganti dengan URL APK Anda
   
   showToast('Mengunduh APK...', 2000);
   
@@ -626,9 +626,9 @@ async function registerServiceWorker() {
 // ===== CREATE MANIFEST =====
 function createManifest() {
   const manifest = {
-    "name": "Udayana Portal",
-    "short_name": "Udayana",
-    "description": "Portal Akses Cepat Kodam Udayana",
+    "name": "Koramil05 Portal",
+    "short_name": "Koramil05",
+    "description": "Portal Akses Cepat Koramil Sukasada",
     "start_url": "https://babinsa05.github.io/tombol2/",
     "display": "standalone",
     "background_color": "#0a1525",
@@ -692,7 +692,7 @@ async function initializeApp() {
       document.getElementById('mainContent').classList.add('loaded');
       hideError();
       
-      showToast('Udayana Portal siap digunakan! 🎯', 2000);
+      showToast('Koramil05 Portal siap digunakan! 🎯', 2000);
       
       if (!localStorage.getItem('first_visit')) {
         localStorage.setItem('first_visit', new Date().toISOString());
