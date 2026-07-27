@@ -317,7 +317,7 @@
             <h1 class="udayana-title">UDAYANA PORTAL</h1>
         </header>
         <main class="buttons-grid">
-            <!-- TOMBOL DUKOPS dengan MULTI LINK -->
+            <!-- TOMBOL DUKOPS -->
             <button class="portal-button" id="btn1">
                 <div class="button-icon">🛡️</div>
                 <div class="button-text">DUKOPS</div>
@@ -361,83 +361,22 @@
 
     <script>
         // ============================================================
-        //  FUNGSI BUKA LINK DENGAN FALLBACK (UNTUK DUKOPS)
+        //  FUNGSI BUKA LINK SEDERHANA (1 URL SAJA)
         // ============================================================
-        function openWithFallback(urls, name) {
-            let currentIndex = 0;
-
-            function tryOpen() {
-                if (currentIndex >= urls.length) {
-                    showToast('Semua link ' + name + ' gagal dibuka', 3000);
-                    return;
+        function openSingleUrl(url, name) {
+            try {
+                showToast('Membuka ' + name + '...', 2000);
+                const newWindow = window.open(url, '_blank');
+                
+                if (!newWindow || newWindow.closed) {
+                    showToast('Gagal membuka ' + name + ', coba lagi', 3000);
+                } else {
+                    console.log('✅ ' + name + ' berhasil dibuka: ' + url);
                 }
-
-                const url = urls[currentIndex];
-                showToast('Mencoba ' + name + ' (' + (currentIndex + 1) + '/' + urls.length + ')...', 2000);
-
-                try {
-                    const newWindow = window.open(url, '_blank');
-
-                    if (newWindow && !newWindow.closed) {
-                        console.log('✅ ' + name + ' berhasil dibuka: ' + url);
-                        currentIndex = 0;
-                        return;
-                    }
-
-                    console.warn('⚠️ Gagal buka ' + name + ' link ' + (currentIndex + 1) + ': ' + url);
-                    currentIndex++;
-                    setTimeout(tryOpen, 500);
-
-                } catch (error) {
-                    console.warn('⚠️ Error buka ' + name + ' link ' + (currentIndex + 1) + ': ' + error.message);
-                    currentIndex++;
-                    setTimeout(tryOpen, 500);
-                }
+            } catch (error) {
+                console.error('❌ Error membuka ' + name + ': ' + error.message);
+                showToast('Error membuka ' + name, 3000);
             }
-
-            tryOpen();
-        }
-
-        // ============================================================
-        //  FUNGSI BUKA LINK DENGAN FALLBACK UNTUK LIKE & SUBCRIBE
-        // ============================================================
-        function openLikeSubscribe() {
-            const urls = [
-                'https://solitary-bush-01a6.sukasada1609-05.workers.dev/',
-                'https://stb606601-droid.github.io/seribulikes05/'
-            ];
-            let currentIndex = 0;
-
-            function tryOpen() {
-                if (currentIndex >= urls.length) {
-                    showToast('Semua link LIKE & SUBCRIBE gagal dibuka', 3000);
-                    return;
-                }
-
-                const url = urls[currentIndex];
-                showToast('Mencoba LIKE & SUBCRIBE (' + (currentIndex + 1) + '/' + urls.length + ')...', 2000);
-
-                try {
-                    const newWindow = window.open(url, '_blank');
-
-                    if (newWindow && !newWindow.closed) {
-                        console.log('✅ LIKE & SUBCRIBE berhasil dibuka: ' + url);
-                        currentIndex = 0;
-                        return;
-                    }
-
-                    console.warn('⚠️ Gagal buka LIKE & SUBCRIBE link ' + (currentIndex + 1) + ': ' + url);
-                    currentIndex++;
-                    setTimeout(tryOpen, 500);
-
-                } catch (error) {
-                    console.warn('⚠️ Error buka LIKE & SUBCRIBE link ' + (currentIndex + 1) + ': ' + error.message);
-                    currentIndex++;
-                    setTimeout(tryOpen, 500);
-                }
-            }
-
-            tryOpen();
         }
 
         // ============================================================
@@ -536,72 +475,59 @@
             }
         }
 
-        // ===== KONFIGURASI BUTTON =====
-        const DUKOPS_URLS = [
-            'https://sukasada05.github.io/sukasada05/',
-            'https://sukasada05.github.io/dukops4/',
-            'https://sukasada05.github.io/Hanpangan/'
-        ];
-
+        // ===== KONFIGURASI BUTTON (1 URL SAJA) =====
         const BUTTON_CONFIG = {
-            btn2: { url: "https://babinsa05.github.io/gabungtxt/", name: "gabungkan txt", fallback: "https://babinsa05.github.io/gabungtxt/" },
-            btn3: { url: "https://drive.google.com/drive/folders/1K9iWrM9fGU3sMcEZCmUWIbx0rLs285_x", name: "GOOGLE DRIVE", fallback: "https://drive.google.com" },
-            btn4: { url: "https://pemetaan-lahan.portalkdkmp.id", name: "PEMETAAN LAHAN", fallback: "https://pemetaan-lahan.portalkdkmp.id" },
-            btn5: { url: "https://portalkdkmp.id/", name: "PORTAL KDKMP", fallback: "https://portalkdkmp.id" }
+            btn1: { 
+                url: "https://sukasada05.github.io/sukasada05/", 
+                name: "DUKOPS" 
+            },
+            btn2: { 
+                url: "https://babinsa05.github.io/gabungtxt/", 
+                name: "gabungtxt" 
+            },
+            btn3: { 
+                url: "https://drive.google.com/drive/folders/1K9iWrM9fGU3sMcEZCmUWIbx0rLs285_x", 
+                name: "GOOGLE DRIVE" 
+            },
+            btn4: { 
+                url: "https://pemetaan-lahan.portalkdkmp.id", 
+                name: "PEMETAAN LAHAN" 
+            },
+            btn5: { 
+                url: "https://portalkdkmp.id/", 
+                name: "PORTAL KDKMP" 
+            },
+            btn6: { 
+                url: "https://solitary-bush-01a6.sukasada1609-05.workers.dev/", 
+                name: "LIKE & SUBCRIBE" 
+            }
         };
 
+        // ===== SETUP BUTTON =====
         function setupButtons() {
             try {
-                // ===== SETUP TOMBOL DUKOPS =====
-                const btnDukops = document.getElementById('btn1');
-                if (btnDukops) {
-                    btnDukops.addEventListener('click', () => {
-                        btnDukops.style.transform = 'scale(0.95)';
-                        openWithFallback(DUKOPS_URLS, 'DUKOPS');
-                        setTimeout(() => {
-                            btnDukops.style.transform = '';
-                        }, 1000);
-                    });
-                }
-
-                // ===== SETUP TOMBOL LIKE & SUBCRIBE =====
-                const btnLike = document.getElementById('btn6');
-                if (btnLike) {
-                    btnLike.addEventListener('click', () => {
-                        btnLike.style.transform = 'scale(0.95)';
-                        openLikeSubscribe();
-                        setTimeout(() => {
-                            btnLike.style.transform = '';
-                        }, 1000);
-                    });
-                }
-
-                // ===== SETUP TOMBOL LAINNYA =====
                 Object.keys(BUTTON_CONFIG).forEach(btnId => {
                     const button = document.getElementById(btnId);
                     const config = BUTTON_CONFIG[btnId];
-                    if (!button) return;
+                    if (!button) {
+                        console.warn('⚠️ Tombol ' + btnId + ' tidak ditemukan');
+                        return;
+                    }
+                    
                     button.addEventListener('click', () => {
+                        // Efek animasi saat diklik
                         button.style.transform = 'scale(0.95)';
-                        showToast('Membuka ' + config.name + '...');
                         setTimeout(() => {
-                            try {
-                                const newWindow = window.open(config.url, '_blank');
-                                setTimeout(() => {
-                                    if (!newWindow || newWindow.closed) {
-                                        window.open(config.fallback, '_blank');
-                                    }
-                                }, 500);
-                            } catch (error) {
-                                window.open(config.fallback, '_blank');
-                            }
-                            setTimeout(() => { button.style.transform = ''; }, 1000);
-                        }, 300);
+                            button.style.transform = '';
+                        }, 200);
+                        
+                        // Buka URL
+                        openSingleUrl(config.url, config.name);
                     });
                 });
-                console.log('Buttons setup successfully');
+                console.log('✅ Buttons setup successfully');
             } catch (error) {
-                console.error('Error setting up buttons:', error);
+                console.error('❌ Error setting up buttons:', error);
                 showError('Gagal setup tombol: ' + error.message);
             }
         }
