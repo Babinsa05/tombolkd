@@ -338,45 +338,46 @@
             <h1 class="udayana-title">UDAYANA PORTAL</h1>
         </header>
         <main class="buttons-grid">
-            <!-- TOMBOL DUKOPS -->
+            <!-- URUTAN BARU -->
+            <!-- 1. TOMBOL DUKOPS -->
             <button class="portal-button" id="btn1">
                 <div class="button-icon">🛡️</div>
                 <div class="button-text">DUKOPS</div>
             </button>
-            <!-- TOMBOL CANVAS-PRO -->
+            <!-- 2. TOMBOL CANVAS-PRO -->
             <button class="portal-button" id="btn2">
                 <div class="button-icon">📸-📸</div>
                 <div class="button-text">CANVAS-PRO</div>
-            </button>            
-            <!-- TOMBOL GABUNGTXT -->
-            <button class="portal-button" id="btn3">
-                <div class="button-icon">🎖️</div>
-                <div class="button-text">gabungtxt</div>
             </button>
-            <!-- TOMBOL PEMETAAN LAHAN -->
-            <button class="portal-button" id="btn4">
-                <div class="button-icon">🗺️</div>
-                <div class="button-text">PEMETAAN LAHAN</div>
+            <!-- 3. TOMBOL GPS CAMERA PRO -->
+            <button class="portal-button btn-gps-camera" id="btnGps">
+                <div class="button-icon">📷</div>
+                <div class="button-text">GPS CAMERA PRO</div>
             </button>
-            <!-- TOMBOL PORTAL KDKMP -->
-            <button class="portal-button" id="btn5">
-                <div class="button-icon">🌐</div>
-                <div class="button-text">PORTAL KDKMP</div>
-            </button>
-            <!-- TOMBOL ABSENSI DUKOPS -->
+            <!-- 4. TOMBOL ABSENSI DUKOPS -->
             <button class="portal-button" id="btn6">
                 <div class="button-icon">📆</div>
                 <div class="button-text">ABSENSI DUKOPS</div>
             </button>
-            <!-- TOMBOL ABSENSI DATA -->
+            <!-- 5. TOMBOL ABSENSI DATA -->
             <button class="portal-button" id="btn7">
                 <div class="button-icon">✍</div>
                 <div class="button-text">ABSENSI DATA</div>
             </button>
-            <!-- TOMBOL GPS CAMERA PRO (BARU) -->
-            <button class="portal-button btn-gps-camera" id="btnGps">
-                <div class="button-icon">📷</div>
-                <div class="button-text">GPS CAMERA PRO</div>
+            <!-- 6. TOMBOL GABUNGTXT -->
+            <button class="portal-button" id="btn3">
+                <div class="button-icon">🎖️</div>
+                <div class="button-text">gabungtxt</div>
+            </button>
+            <!-- 7. TOMBOL PORTAL KDKMP -->
+            <button class="portal-button" id="btn5">
+                <div class="button-icon">🌐</div>
+                <div class="button-text">PORTAL KDKMP</div>
+            </button>
+            <!-- 8. TOMBOL PEMETAAN LAHAN -->
+            <button class="portal-button" id="btn4">
+                <div class="button-icon">🗺️</div>
+                <div class="button-text">PEMETAAN LAHAN</div>
             </button>
         </main>
     </div>
@@ -578,7 +579,7 @@
             },
             btn6: { 
                 url: "https://absensi.dukopbabinsa05.workers.dev/", 
-                name: "ABSENSI" 
+                name: "ABSENSI DUKOPS" 
             },
             btn7: { 
                 url: "https://absensi-desa.pages.dev/", 
@@ -589,7 +590,7 @@
         // ===== SETUP BUTTON =====
         function setupButtons() {
             try {
-                // Setup tombol biasa
+                // Setup tombol biasa (btn1, btn2, btn3, btn4, btn5, btn6, btn7)
                 Object.keys(BUTTON_CONFIG).forEach(btnId => {
                     const button = document.getElementById(btnId);
                     const config = BUTTON_CONFIG[btnId];
