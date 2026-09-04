@@ -14,7 +14,7 @@ Progressive Web App untuk akses cepat portal Udayana dengan dukungan APK.
 ## Instalasi
 
 ### 1. Sebagai PWA (Recommended)
-1. Buka https://babinsa05.github.io/tombol2/
+1. Buka https://babinsa05.github.io/tombolkd/
 2. Klik tombol "Install PWA" di kanan bawah
 3. Konfirmasi instalasi
 4. Aplikasi akan muncul di home screen
@@ -28,7 +28,7 @@ Progressive Web App untuk akses cepat portal Udayana dengan dukungan APK.
 ### 3. Untuk Developer
 ```bash
 # Clone repository
-git clone https://github.com/babinsa05/tombol2.git
+git clone https://github.com/Babinsa05/tombolkd.git
 
 # Deploy ke GitHub Pages
 chmod +x push-to-github.sh

@@ -13,7 +13,7 @@ fi
 # Tambahkan remote jika belum
 if ! git remote | grep -q "origin"; then
     echo "🔗 Adding GitHub remote..."
-    git remote add origin https://github.com/babinsa05/tombol2.git
+    git remote add origin https://github.com/Babinsa05/tombolkd.git
 fi
 
 # Pull perubahan terbaru
@@ -24,6 +24,8 @@ git pull origin main --rebase
 echo "📁 Adding files..."
 git add index.html
 git add sw.js
+git add site.webmanifest
+git add favicon.ico favicon-16x16.png favicon-32x32.png apple-touch-icon.png android-chrome-192x192.png android-chrome-512x512.png
 git add push-to-github.sh
 
 # Buat commit
@@ -42,7 +44,7 @@ echo "🚀 Pushing to GitHub..."
 git push -u origin main
 
 echo "✅ Deployment selesai!"
-echo "🌐 Aplikasi akan tersedia di: https://babinsa05.github.io/tombol2/"
+echo "🌐 Aplikasi akan tersedia di: https://babinsa05.github.io/tombolkd/"
 echo ""
 echo "📋 Checklist PWA:"
 echo "1. ✅ Service Worker terdaftar"
@@ -52,7 +54,7 @@ echo "4. ✅ APK download button"
 echo "5. ✅ Offline support"
 echo ""
 echo "🔧 Testing:"
-echo "- Buka https://babinsa05.github.io/tombol2/"
+echo "- Buka https://babinsa05.github.io/tombolkd/"
 echo "- Klik 'Add to Home Screen' (PWA)"
 echo "- Klik 'Download APK' untuk versi native"
 echo "- Coba mode offline"

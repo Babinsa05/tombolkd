@@ -13,10 +13,10 @@
     <title>Udayana Portal</title>
 
     <!-- PWA Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://babinsa05.github.io/tombol2/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://babinsa05.github.io/tombol2/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://babinsa05.github.io/tombol2/favicon-16x16.png">
-    <link rel="manifest" href="https://babinsa05.github.io/tombol2/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
 
     <style>
         /* ===== CRITICAL CSS ===== */
@@ -162,6 +162,14 @@
             font-size: 40px;
             margin-bottom: 10px;
         }
+        .button-icon-image {
+            width: 80px;
+            height: 80px;
+            display: block;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.35));
+        }
         .button-text {
             text-align: center;
             line-height: 1.3;
@@ -190,7 +198,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            display: flex;
+            display: none;
             flex-direction: column;
             gap: 10px;
             z-index: 1000;
@@ -318,7 +326,7 @@
     <!-- APP SHELL -->
     <div class="app-shell" id="appShell">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" alt="Udayana" class="app-logo">
-        <div class="app-title">UDAYANA PORTAL</div>
+        <div class="app-title">KORAMIL SUKASADA</div>
         <div class="app-loading">
             <div class="app-progress" id="appProgress"></div>
         </div>
@@ -333,15 +341,11 @@
 
     <!-- MAIN CONTENT -->
     <div class="main-content" id="mainContent">
-        <header class="udayana-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" alt="Udayana" class="udayana-logo">
-            <h1 class="udayana-title">UDAYANA PORTAL</h1>
-        </header>
         <main class="buttons-grid">
             <!-- URUTAN BARU -->
             <!-- 1. TOMBOL DUKOPS -->
             <button class="portal-button" id="btn1">
-                <div class="button-icon">🛡️</div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" alt="Lambang Kodam IX Udayana" class="button-icon-image">
                 <div class="button-text">DUKOPS</div>
             </button>
             <!-- 2. TOMBOL CANVAS-PRO -->
@@ -352,22 +356,12 @@
             <!-- 3. TOMBOL GPS CAMERA PRO -->
             <button class="portal-button btn-gps-camera" id="btnGps">
                 <div class="button-icon">📷</div>
-                <div class="button-text">GPS CAMERA PRO</div>
-            </button>
-            <!-- 4. TOMBOL ABSENSI DUKOPS -->
-            <button class="portal-button" id="btn6">
-                <div class="button-icon">📆</div>
-                <div class="button-text">ABSENSI DUKOPS</div>
+                <div class="button-text">OPEN CAMERA</div>
             </button>
             <!-- 5. TOMBOL ABSENSI DATA -->
             <button class="portal-button" id="btn7">
                 <div class="button-icon">✍</div>
                 <div class="button-text">ABSENSI DATA</div>
-            </button>
-            <!-- 6. TOMBOL GABUNGTXT -->
-            <button class="portal-button" id="btn3">
-                <div class="button-icon">🎖️</div>
-                <div class="button-text">gabungtxt</div>
             </button>
             <!-- 7. TOMBOL PORTAL KDKMP -->
             <button class="portal-button" id="btn5">
@@ -463,24 +457,25 @@
         //  INSTALL PWA
         // ============================================================
         let deferredPrompt = null;
+        const installFixed = document.getElementById('installFixed');
         const installBtn = document.getElementById('installButton');
 
         window.addEventListener('beforeinstallprompt', (e) => {
             console.log('📱 PWA install prompt tersedia');
             e.preventDefault();
             deferredPrompt = e;
-            installBtn.style.display = 'flex';
+            installFixed.style.display = 'flex';
         });
 
         window.addEventListener('appinstalled', () => {
             console.log('✅ PWA berhasil diinstal');
-            installBtn.style.display = 'none';
+            installFixed.style.display = 'none';
             showToast('Aplikasi berhasil dipasang! 🎉', 3000);
         });
 
         window.addEventListener('load', () => {
             if (window.matchMedia('(display-mode: standalone)').matches) {
-                installBtn.style.display = 'none';
+                installFixed.style.display = 'none';
                 console.log('📱 Berjalan sebagai aplikasi terinstal');
             }
         });
@@ -565,10 +560,6 @@
                 url: "https://canvaspro.sukasada1609-05.workers.dev/", 
                 name: "CanvasPro" 
             },
-            btn3: { 
-                url: "https://babinsa05.github.io/gabungtxt/", 
-                name: "gabungtxt" 
-            },
             btn4: { 
                 url: "https://pemetaan-lahan.portalkdkmp.id", 
                 name: "PEMETAAN LAHAN" 
@@ -576,10 +567,6 @@
             btn5: { 
                 url: "https://portalkdkmp.id/", 
                 name: "PORTAL KDKMP" 
-            },
-            btn6: { 
-                url: "https://absensi.dukopbabinsa05.workers.dev/", 
-                name: "ABSENSI DUKOPS" 
             },
             btn7: { 
                 url: "https://absensi-desa.pages.dev/", 
@@ -590,7 +577,7 @@
         // ===== SETUP BUTTON =====
         function setupButtons() {
             try {
-                // Setup tombol biasa (btn1, btn2, btn3, btn4, btn5, btn6, btn7)
+                // Setup tombol biasa
                 Object.keys(BUTTON_CONFIG).forEach(btnId => {
                     const button = document.getElementById(btnId);
                     const config = BUTTON_CONFIG[btnId];
@@ -645,36 +632,11 @@
             }
         }
 
-        // ===== MANIFEST =====
-        function createManifest() {
-            const manifest = {
-                name: "Udayana Portal",
-                short_name: "Udayana",
-                description: "Portal Akses Cepat Kodam Udayana",
-                start_url: "https://babinsa05.github.io/tombol2/",
-                display: "standalone",
-                background_color: "#0a1525",
-                theme_color: "#000000",
-                icons: [
-                    { src: "https://babinsa05.github.io/tombol2/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-                    { src: "https://babinsa05.github.io/tombol2/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
-                ]
-            };
-            const manifestElement = document.createElement('link');
-            manifestElement.rel = 'manifest';
-            manifestElement.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
-            const existing = document.querySelector('link[rel="manifest"]');
-            if (existing) existing.remove();
-            document.head.appendChild(manifestElement);
-            console.log('✅ Dynamic Manifest created');
-        }
-
         // ===== INIT =====
         async function initializeApp() {
             try {
                 console.log('🚀 Initializing Udayana Portal...');
                 updateProgress(10);
-                createManifest();
                 updateProgress(30);
                 await registerServiceWorker();
                 updateProgress(60);
@@ -690,7 +652,6 @@
                     document.getElementById('appShell').classList.add('hidden');
                     document.getElementById('mainContent').classList.add('loaded');
                     hideError();
-                    showToast('Udayana Portal siap digunakan! 🎯', 2000);
                 }, 500);
             } catch (error) {
                 console.error('❌ Initialization failed:', error);

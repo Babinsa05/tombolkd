@@ -6,10 +6,10 @@ const APK_URL = 'https://example.com/udayana-portal.apk'; // Ganti dengan URL AP
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  'https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg',
-  'https://babinsa05.github.io/tombol2/apple-touch-icon.png',
-  'https://babinsa05.github.io/tombol2/favicon-32x32.png',
-  'https://babinsa05.github.io/tombol2/favicon-16x16.png'
+  './site.webmanifest',
+  './apple-touch-icon.png',
+  './favicon-32x32.png',
+  './favicon-16x16.png'
 ];
 
 // Install event
@@ -90,7 +90,7 @@ self.addEventListener('fetch', (event) => {
             
             // Return fallback image
             if (event.request.destination === 'image') {
-              return caches.match('https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg');
+              return new Response('', { status: 404 });
             }
             
             return new Response('Udayana Portal - Mode Offline', {
